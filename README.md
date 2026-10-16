@@ -1,11 +1,14 @@
-# ABX Guide v3 — static snapshot
+# ABX Guide v4 — combined lookup
 
-Static GitHub Pages build; no backend, npm, scraper, or scheduled monthly checks.
+Static GitHub Pages build.
 
-Includes class-based continuous spectrum bars, drug-to-class search, dynamic insertion of rarer organisms, organism highlighting, site-specific antibiogram source panels, and initial adult syndrome guidance (CAP, HAP/VAP, UTI, SSTI, intra-abdominal infection, meningitis, sepsis).
+New:
+- Three independent selectors: Antibiotic, Organism, Syndrome.
+- Any combination works.
+- Drug + bug highlights both and assesses expected spectrum.
+- Bug + syndrome creates an empiric-context panel using the structured IDMP syndrome pathway plus organism spectrum/local susceptibility.
+- Drug + bug + syndrome asks whether the selected drug fits both contexts.
+- UCSF Parnassus now includes validated 2025 structured susceptibility percentages for key Gram-negative organisms and MRSA/MSSA from current UCSF IDMP tables.
+- ZSFG/SFVA remain ready for pasted validated tables.
 
-Important: this build deliberately does not invent susceptibility percentages that were not reliably extractable as structured data from current public IDMP pages. It links the authoritative local antibiogram for UCSF, ZSFG, SFVA, and ambulatory data. A future data-validation pass can populate exact percentages.
-
-Deploy by uploading all files/folders to the root of `abx-guide` and committing to `main`.
-
-Snapshot: 2026-10-16.
+No monthly checks or backend are included.

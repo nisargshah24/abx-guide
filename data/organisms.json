@@ -1,0 +1,41 @@
+[
+  {
+    "id": "pseudomonas",
+    "name": "Pseudomonas aeruginosa",
+    "aliases": [
+      "pseudomonas",
+      "psa"
+    ],
+    "active": [
+      "cefepime",
+      "piptazo"
+    ],
+    "note": "Local susceptibility should be interpreted using the selected site's current antibiogram."
+  },
+  {
+    "id": "mrsa",
+    "name": "MRSA",
+    "aliases": [
+      "mrsa"
+    ],
+    "active": [
+      "vancomycin"
+    ],
+    "note": "Spectrum display is simplified; infection site and susceptibility matter."
+  },
+  {
+    "id": "ecoli",
+    "name": "Escherichia coli",
+    "aliases": [
+      "e coli",
+      "e. coli",
+      "ecoli"
+    ],
+    "active": [
+      "cefepime",
+      "ceftriaxone",
+      "piptazo"
+    ],
+    "note": "Local susceptibility varies by site and patient population."
+  }
+]

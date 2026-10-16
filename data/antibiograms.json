@@ -1,0 +1,22 @@
+{
+  "ucsf": {
+    "name": "UCSF Parnassus",
+    "status": "Awaiting validated UCSF IDMP import",
+    "values": {}
+  },
+  "zsfg": {
+    "name": "ZSFG / SF General",
+    "status": "Awaiting validated UCSF IDMP import",
+    "values": {}
+  },
+  "sfva": {
+    "name": "SF VA",
+    "status": "Awaiting validated UCSF IDMP import",
+    "values": {}
+  },
+  "ambulatory": {
+    "name": "Ambulatory",
+    "status": "Awaiting validated ambulatory antibiogram import",
+    "values": {}
+  }
+}

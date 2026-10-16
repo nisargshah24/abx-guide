@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cap",
+    "name": "Community-Acquired Pneumonia",
+    "aliases": [
+      "cap",
+      "community acquired pneumonia"
+    ],
+    "summary": "Site-specific empiric therapy, alternatives, duration, and special situations will appear here.",
+    "status": "Clinical content intentionally withheld pending source validation."
+  },
+  {
+    "id": "hap",
+    "name": "Hospital-Acquired Pneumonia",
+    "aliases": [
+      "hap",
+      "hospital acquired pneumonia"
+    ],
+    "summary": "Site-specific empiric therapy and resistant-organism considerations will appear here.",
+    "status": "Clinical content intentionally withheld pending source validation."
+  }
+]

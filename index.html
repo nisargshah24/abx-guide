@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ABX Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>ABX Guide</h1>
+    <p class="subtitle">Antibiotic spectrum & local decision-support prototype</p>
+  </div>
+  <label class="site-label">Site
+    <select id="site">
+      <option value="ucsf">UCSF Parnassus</option>
+      <option value="zsfg">ZSFG / SF General</option>
+      <option value="sfva">SF VA</option>
+      <option value="ambulatory">Ambulatory</option>
+    </select>
+  </label>
+</header>
+
+<main>
+  <section class="hero">
+    <h2>What are you looking for?</h2>
+    <div class="search-wrap">
+      <input id="search" autocomplete="off" placeholder="Try cefepime, Pseudomonas, CAP, HAP…">
+      <div id="suggestions" class="suggestions"></div>
+    </div>
+    <div class="chips">
+      <button data-query="cefepime">cefepime</button>
+      <button data-query="Pseudomonas">Pseudomonas</button>
+      <button data-query="CAP">CAP</button>
+      <button data-query="HAP">HAP</button>
+    </div>
+  </section>
+
+  <section id="result" class="card result">
+    <div class="eyebrow">START HERE</div>
+    <h2>One search box, three kinds of answers</h2>
+    <div class="three">
+      <div><strong>Antibiotic</strong><span>What does it cover?</span></div>
+      <div><strong>Organism</strong><span>What covers it?</span></div>
+      <div><strong>Syndrome</strong><span>What does the selected site recommend?</span></div>
+    </div>
+    <p class="notice">Prototype only. Clinical recommendations and local susceptibility values must be source-validated before clinical use.</p>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <div><div class="eyebrow">EXPLORE</div><h2>Antibiotic spectrum</h2></div>
+      <p>Click a drug or organism.</p>
+    </div>
+    <div class="table-scroll">
+      <table id="spectrum"></table>
+    </div>
+    <div class="legend"><span>● Expected activity</span><span>○ No reliable activity</span><span>◐ Variable / context dependent</span></div>
+  </section>
+</main>
+
+<footer>ABX Guide · prototype · Always verify against current institutional guidance.</footer>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "cefepime",
+    "name": "Cefepime",
+    "class": "4th-generation cephalosporin",
+    "uses": [
+      "HAP/VAP",
+      "Febrile neutropenia",
+      "Severe gram-negative infection"
+    ],
+    "coverage": {
+      "MRSA": "no",
+      "MSSA": "yes",
+      "Strep": "yes",
+      "Enterococcus": "no",
+      "E. coli": "yes",
+      "Klebsiella": "yes",
+      "Pseudomonas": "yes",
+      "Anaerobes": "no",
+      "Atypicals": "no"
+    }
+  },
+  {
+    "id": "ceftriaxone",
+    "name": "Ceftriaxone",
+    "class": "3rd-generation cephalosporin",
+    "uses": [
+      "CAP",
+      "Selected gram-negative infections"
+    ],
+    "coverage": {
+      "MRSA": "no",
+      "MSSA": "variable",
+      "Strep": "yes",
+      "Enterococcus": "no",
+      "E. coli": "yes",
+      "Klebsiella": "yes",
+      "Pseudomonas": "no",
+      "Anaerobes": "no",
+      "Atypicals": "no"
+    }
+  },
+  {
+    "id": "piptazo",
+    "name": "Piperacillin/tazobactam",
+    "class": "Antipseudomonal penicillin + beta-lactamase inhibitor",
+    "uses": [
+      "Broad empiric therapy",
+      "Selected polymicrobial infections"
+    ],
+    "coverage": {
+      "MRSA": "no",
+      "MSSA": "yes",
+      "Strep": "yes",
+      "Enterococcus": "variable",
+      "E. coli": "yes",
+      "Klebsiella": "yes",
+      "Pseudomonas": "yes",
+      "Anaerobes": "yes",
+      "Atypicals": "no"
+    }
+  },
+  {
+    "id": "vancomycin",
+    "name": "Vancomycin",
+    "class": "Glycopeptide",
+    "uses": [
+      "Serious gram-positive infections",
+      "MRSA coverage"
+    ],
+    "coverage": {
+      "MRSA": "yes",
+      "MSSA": "yes",
+      "Strep": "yes",
+      "Enterococcus": "variable",
+      "E. coli": "no",
+      "Klebsiella": "no",
+      "Pseudomonas": "no",
+      "Anaerobes": "variable",
+      "Atypicals": "no"
+    }
+  },
+  {
+    "id": "doxycycline",
+    "name": "Doxycycline",
+    "class": "Tetracycline",
+    "uses": [
+      "CAP atypical coverage",
+      "Selected skin infections"
+    ],
+    "coverage": {
+      "MRSA": "variable",
+      "MSSA": "variable",
+      "Strep": "variable",
+      "Enterococcus": "no",
+      "E. coli": "no",
+      "Klebsiella": "no",
+      "Pseudomonas": "no",
+      "Anaerobes": "no",
+      "Atypicals": "yes"
+    }
+  }
+]

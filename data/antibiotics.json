@@ -1,103 +1,140 @@
 [
   {
-    "id": "cefepime",
-    "name": "Cefepime",
-    "class": "4th-generation cephalosporin",
+    "id": "vancomycin",
+    "name": "Vancomycin",
+    "class": "Glycopeptide",
+    "mechanism": "Binds D-Ala-D-Ala termini of peptidoglycan precursors, inhibiting bacterial cell-wall synthesis.",
     "uses": [
-      "HAP/VAP",
-      "Febrile neutropenia",
-      "Severe gram-negative infection"
+      "Serious MRSA infections",
+      "Selected serious gram-positive infections"
     ],
-    "coverage": {
-      "MRSA": "no",
-      "MSSA": "yes",
-      "Strep": "yes",
-      "Enterococcus": "no",
-      "E. coli": "yes",
-      "Klebsiella": "yes",
-      "Pseudomonas": "yes",
-      "Anaerobes": "no",
-      "Atypicals": "no"
-    }
+    "segments": [
+      [
+        "MRSA",
+        "Enterococcus"
+      ]
+    ]
+  },
+  {
+    "id": "cefazolin",
+    "name": "Cefazolin",
+    "class": "1st-generation cephalosporin",
+    "mechanism": "Binds penicillin-binding proteins (PBPs), disrupting peptidoglycan cross-linking and cell-wall synthesis.",
+    "uses": [
+      "MSSA infections",
+      "Surgical prophylaxis",
+      "Selected streptococcal infections"
+    ],
+    "segments": [
+      [
+        "MSSA",
+        "Strep"
+      ]
+    ]
   },
   {
     "id": "ceftriaxone",
     "name": "Ceftriaxone",
     "class": "3rd-generation cephalosporin",
+    "mechanism": "Binds PBPs and inhibits bacterial cell-wall synthesis.",
     "uses": [
-      "CAP",
+      "Community-acquired pneumonia",
+      "Meningitis",
       "Selected gram-negative infections"
     ],
-    "coverage": {
-      "MRSA": "no",
-      "MSSA": "variable",
-      "Strep": "yes",
-      "Enterococcus": "no",
-      "E. coli": "yes",
-      "Klebsiella": "yes",
-      "Pseudomonas": "no",
-      "Anaerobes": "no",
-      "Atypicals": "no"
-    }
+    "segments": [
+      [
+        "MSSA",
+        "Klebsiella"
+      ],
+      [
+        "Neisseria",
+        "H influenzae"
+      ]
+    ]
+  },
+  {
+    "id": "cefepime",
+    "name": "Cefepime",
+    "class": "4th-generation cephalosporin",
+    "mechanism": "Binds PBPs and inhibits bacterial cell-wall synthesis, with broad gram-negative activity including Pseudomonas.",
+    "uses": [
+      "Hospital-acquired pneumonia",
+      "Febrile neutropenia",
+      "Severe gram-negative infections"
+    ],
+    "segments": [
+      [
+        "MSSA",
+        "Pseudomonas"
+      ],
+      [
+        "Neisseria",
+        "H influenzae"
+      ]
+    ]
   },
   {
     "id": "piptazo",
     "name": "Piperacillin/tazobactam",
     "class": "Antipseudomonal penicillin + beta-lactamase inhibitor",
+    "mechanism": "Piperacillin inhibits PBPs and cell-wall synthesis while tazobactam inhibits selected beta-lactamases.",
     "uses": [
       "Broad empiric therapy",
-      "Selected polymicrobial infections"
+      "Polymicrobial infections",
+      "Selected intra-abdominal infections"
     ],
-    "coverage": {
-      "MRSA": "no",
-      "MSSA": "yes",
-      "Strep": "yes",
-      "Enterococcus": "variable",
-      "E. coli": "yes",
-      "Klebsiella": "yes",
-      "Pseudomonas": "yes",
-      "Anaerobes": "yes",
-      "Atypicals": "no"
-    }
+    "segments": [
+      [
+        "MSSA",
+        "Pseudomonas"
+      ],
+      [
+        "Anaerobes",
+        "Anaerobes"
+      ]
+    ]
   },
   {
-    "id": "vancomycin",
-    "name": "Vancomycin",
-    "class": "Glycopeptide",
+    "id": "meropenem",
+    "name": "Meropenem",
+    "class": "Carbapenem",
+    "mechanism": "Binds PBPs and inhibits bacterial cell-wall synthesis; it is stable to many beta-lactamases.",
     "uses": [
-      "Serious gram-positive infections",
-      "MRSA coverage"
+      "Severe resistant gram-negative infections",
+      "Polymicrobial infections",
+      "Selected CNS infections"
     ],
-    "coverage": {
-      "MRSA": "yes",
-      "MSSA": "yes",
-      "Strep": "yes",
-      "Enterococcus": "variable",
-      "E. coli": "no",
-      "Klebsiella": "no",
-      "Pseudomonas": "no",
-      "Anaerobes": "variable",
-      "Atypicals": "no"
-    }
+    "segments": [
+      [
+        "MSSA",
+        "Pseudomonas"
+      ],
+      [
+        "Anaerobes",
+        "Anaerobes"
+      ]
+    ]
   },
   {
     "id": "doxycycline",
     "name": "Doxycycline",
     "class": "Tetracycline",
+    "mechanism": "Binds the 30S ribosomal subunit and inhibits bacterial protein synthesis.",
     "uses": [
-      "CAP atypical coverage",
-      "Selected skin infections"
+      "Atypical respiratory pathogens",
+      "Selected skin infections",
+      "Tick-borne infections"
     ],
-    "coverage": {
-      "MRSA": "variable",
-      "MSSA": "variable",
-      "Strep": "variable",
-      "Enterococcus": "no",
-      "E. coli": "no",
-      "Klebsiella": "no",
-      "Pseudomonas": "no",
-      "Anaerobes": "no",
-      "Atypicals": "yes"
-    }
+    "segments": [
+      [
+        "MRSA",
+        "MSSA"
+      ],
+      [
+        "Atypicals",
+        "Atypicals"
+      ]
+    ]
   }
 ]

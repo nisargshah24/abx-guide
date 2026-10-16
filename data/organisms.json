@@ -1,41 +1,83 @@
 [
   {
-    "id": "pseudomonas",
-    "name": "Pseudomonas aeruginosa",
-    "aliases": [
-      "pseudomonas",
-      "psa"
-    ],
-    "active": [
-      "cefepime",
-      "piptazo"
-    ],
-    "note": "Local susceptibility should be interpreted using the selected site's current antibiogram."
-  },
-  {
     "id": "mrsa",
     "name": "MRSA",
+    "column": "MRSA",
     "aliases": [
       "mrsa"
-    ],
-    "active": [
-      "vancomycin"
-    ],
-    "note": "Spectrum display is simplified; infection site and susceptibility matter."
+    ]
+  },
+  {
+    "id": "mssa",
+    "name": "MSSA",
+    "column": "MSSA",
+    "aliases": [
+      "mssa"
+    ]
+  },
+  {
+    "id": "strep",
+    "name": "Streptococci",
+    "column": "Strep",
+    "aliases": [
+      "strep",
+      "streptococcus",
+      "streptococci"
+    ]
+  },
+  {
+    "id": "enterococcus",
+    "name": "Enterococcus",
+    "column": "Enterococcus",
+    "aliases": [
+      "enterococcus",
+      "enterococci"
+    ]
+  },
+  {
+    "id": "neisseria",
+    "name": "Neisseria",
+    "column": "Neisseria",
+    "aliases": [
+      "neisseria"
+    ]
+  },
+  {
+    "id": "hinfluenzae",
+    "name": "Haemophilus influenzae",
+    "column": "H influenzae",
+    "aliases": [
+      "h influenzae",
+      "h. influenzae",
+      "haemophilus"
+    ]
   },
   {
     "id": "ecoli",
     "name": "Escherichia coli",
+    "column": "E coli",
     "aliases": [
       "e coli",
       "e. coli",
       "ecoli"
-    ],
-    "active": [
-      "cefepime",
-      "ceftriaxone",
-      "piptazo"
-    ],
-    "note": "Local susceptibility varies by site and patient population."
+    ]
+  },
+  {
+    "id": "klebsiella",
+    "name": "Klebsiella",
+    "column": "Klebsiella",
+    "aliases": [
+      "klebsiella"
+    ]
+  },
+  {
+    "id": "pseudomonas",
+    "name": "Pseudomonas aeruginosa",
+    "column": "Pseudomonas",
+    "aliases": [
+      "pseudomonas",
+      "pseudomonas aeruginosa",
+      "psa"
+    ]
   }
 ]

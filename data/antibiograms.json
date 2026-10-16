@@ -11,12 +11,12 @@
   },
   "sfva": {
     "name": "SF VA",
-    "status": "Awaiting validated UCSF IDMP import",
+    "status": "Awaiting validated SF VA import",
     "values": {}
   },
   "ambulatory": {
     "name": "Ambulatory",
-    "status": "Awaiting validated ambulatory antibiogram import",
+    "status": "Awaiting validated ambulatory import",
     "values": {}
   }
 }

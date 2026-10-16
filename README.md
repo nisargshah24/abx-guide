@@ -1,17 +1,17 @@
-# ABX Guide
+# ABX Guide — Static v2
 
-Static GitHub Pages prototype for exploring antibiotic spectrum, organisms, syndromes, and site-specific antibiogram data.
+Dark-mode GitHub Pages prototype.
 
-## Publish
+## What's new
+- Dark UI
+- Spectrum grouped by Gram stain and bacterial shape
+- Continuous spectrum bars rather than dot cells
+- Selecting an antibiotic highlights its row/spectrum and shows class, common uses, and a one-line mechanism
+- Selecting an organism highlights its column and shows expected active agents plus a placeholder for the selected site's local antibiogram
+- Site selector: UCSF Parnassus, ZSFG / SF General, SF VA, Ambulatory
 
-1. Upload the contents of this folder to the root of your `abx-guide` GitHub repository.
-2. In GitHub open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Choose **main** and **/(root)**, then **Save**.
-5. The site will publish at `https://nisargshah24.github.io/abx-guide/`.
+## Deploy
+Upload all files/folders in this package to the root of the existing `abx-guide` repository and commit. GitHub Pages will automatically redeploy from `main`.
 
-No npm, Next.js, Vercel, or deployment workflow is required.
-
-## Clinical-data note
-
-This is a prototype. Site-specific treatment recommendations, durations, and antibiogram percentages are intentionally left unpopulated until they are validated against current institutional sources.
+## Clinical safety
+This remains an interface prototype. Spectrum data are simplified and site-specific susceptibility/recommendation values are intentionally not populated until validated against current institutional sources.

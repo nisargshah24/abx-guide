@@ -1,65 +1,20 @@
-let DB={};
-const $=s=>document.querySelector(s);
-const siteEl=$("#site"), searchEl=$("#search"), resultEl=$("#result"), suggEl=$("#suggestions");
-const cols=["MRSA","MSSA","Strep","Enterococcus","E. coli","Klebsiella","Pseudomonas","Anaerobes","Atypicals"];
-
-Promise.all([
- fetch("data/antibiotics.json").then(r=>r.json()),
- fetch("data/organisms.json").then(r=>r.json()),
- fetch("data/syndromes.json").then(r=>r.json()),
- fetch("data/antibiograms.json").then(r=>r.json())
-]).then(([antibiotics,organisms,syndromes,antibiograms])=>{
- DB={antibiotics,organisms,syndromes,antibiograms}; renderSpectrum(); bind();
-}).catch(()=>{resultEl.innerHTML="<h2>Data could not load</h2><p>Make sure this is being served through GitHub Pages rather than opened as a local file.</p>"});
-
-function bind(){
- searchEl.addEventListener("input",()=>suggest(searchEl.value));
- searchEl.addEventListener("keydown",e=>{if(e.key==="Enter"){find(searchEl.value);suggEl.innerHTML=""}});
- document.querySelectorAll("[data-query]").forEach(b=>b.onclick=()=>{searchEl.value=b.dataset.query;find(b.dataset.query)});
- siteEl.onchange=()=>{if(searchEl.value.trim())find(searchEl.value)};
-}
-function allItems(){
- return [
-  ...DB.antibiotics.map(x=>({type:"antibiotic",label:x.name,q:x.name})),
-  ...DB.organisms.map(x=>({type:"organism",label:x.name,q:x.name})),
-  ...DB.syndromes.map(x=>({type:"syndrome",label:x.name,q:x.id.toUpperCase()}))
- ];
-}
-function suggest(q){
- q=q.trim().toLowerCase(); if(!q){suggEl.innerHTML="";return}
- const hits=allItems().filter(x=>x.label.toLowerCase().includes(q)||x.q.toLowerCase().includes(q)).slice(0,6);
- suggEl.innerHTML=hits.map(x=>`<button data-s="${esc(x.q)}"><b>${esc(x.label)}</b> · ${x.type}</button>`).join("");
- suggEl.querySelectorAll("button").forEach(b=>b.onclick=()=>{searchEl.value=b.dataset.s;find(b.dataset.s);suggEl.innerHTML=""});
-}
-function find(q){
- const x=q.trim().toLowerCase();
- let a=DB.antibiotics.find(v=>v.name.toLowerCase()===x||v.id===x);
- if(a)return renderAntibiotic(a);
- let o=DB.organisms.find(v=>v.name.toLowerCase()===x||v.aliases.some(z=>z===x));
- if(o)return renderOrganism(o);
- let s=DB.syndromes.find(v=>v.id===x||v.name.toLowerCase()===x||v.aliases.some(z=>z===x));
- if(s)return renderSyndrome(s);
- resultEl.innerHTML=`<div class="eyebrow">NO MATCH</div><h2>${esc(q)}</h2><p>Try an antibiotic, organism, CAP, or HAP.</p>`;
-}
-function renderAntibiotic(a){
- const site=DB.antibiograms[siteEl.value];
- const covered=Object.entries(a.coverage).filter(([,v])=>v==="yes").map(([k])=>k);
- const absent=Object.entries(a.coverage).filter(([,v])=>v==="no").map(([k])=>k);
- resultEl.innerHTML=`<div class="eyebrow">ANTIBIOTIC · ${esc(site.name)}</div><div class="result-grid"><div><h2>${esc(a.name)}</h2><p class="muted">${esc(a.class)}</p><h3>Expected spectrum</h3><p>${covered.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</p><p class="muted">No reliable activity: ${absent.map(esc).join(", ")}</p><h3>Common uses</h3><p>${a.uses.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</p></div><div><h3>Local antibiogram</h3><p class="placeholder">${esc(site.status)}</p><p class="source">Clinical values are deliberately not populated with demo percentages.</p></div></div>`;
-}
-function renderOrganism(o){
- const site=DB.antibiograms[siteEl.value];
- const names=o.active.map(id=>DB.antibiotics.find(a=>a.id===id)).filter(Boolean);
- resultEl.innerHTML=`<div class="eyebrow">ORGANISM · ${esc(site.name)}</div><div class="result-grid"><div><h2>${esc(o.name)}</h2><h3>Agents in prototype with expected activity</h3><p>${names.map(a=>`<span class="tag">${esc(a.name)}</span>`).join("")}</p><p class="muted">${esc(o.note)}</p></div><div><h3>Local susceptibility</h3><p class="placeholder">${esc(site.status)}</p></div></div>`;
-}
-function renderSyndrome(s){
- const site=DB.antibiograms[siteEl.value];
- resultEl.innerHTML=`<div class="eyebrow">SYNDROME · ${esc(site.name)}</div><h2>${esc(s.name)}</h2><p>${esc(s.summary)}</p><h3>Recommended empiric therapy</h3><p class="placeholder">${esc(s.status)}</p><h3>Duration</h3><p class="placeholder">Will be populated from validated institutional guidance.</p><p class="source">Planned source: current UCSF IDMP / site-specific guidance with source URL and review date.</p>`;
-}
-function renderSpectrum(){
- $("#spectrum").innerHTML=`<thead><tr><th>Antibiotic</th>${cols.map(c=>`<th><button class="org-link" data-org="${esc(c)}">${esc(c)}</button></th>`).join("")}</tr></thead><tbody>${DB.antibiotics.map(a=>`<tr><td><button class="drug-link" data-drug="${a.id}">${esc(a.name)}</button><br><small class="muted">${esc(a.class)}</small></td>${cols.map(c=>cell(a.coverage[c])).join("")}</tr>`).join("")}</tbody>`;
- document.querySelectorAll("[data-drug]").forEach(b=>b.onclick=()=>{const a=DB.antibiotics.find(x=>x.id===b.dataset.drug);searchEl.value=a.name;renderAntibiotic(a);scrollTo({top:0,behavior:"smooth"})});
- document.querySelectorAll("[data-org]").forEach(b=>b.onclick=()=>{const o=DB.organisms.find(x=>x.name.toLowerCase().includes(b.dataset.org.toLowerCase())||x.aliases?.some(z=>z.includes(b.dataset.org.toLowerCase())));if(o){searchEl.value=o.name;renderOrganism(o);scrollTo({top:0,behavior:"smooth"})}});
-}
-function cell(v){return v==="yes"?'<td class="yes">●</td>':v==="variable"?'<td class="variable">◐</td>':'<td class="no">○</td>'}
+let DB={},selection=null;
+const $=s=>document.querySelector(s),site=$("#site"),search=$("#search"),detail=$("#detail"),suggestions=$("#suggestions");
+Promise.all(["antibiotics","columns","organisms","syndromes","antibiograms"].map(n=>fetch(`data/${n}.json`).then(r=>r.json()))).then(([antibiotics,columns,organisms,syndromes,antibiograms])=>{DB={antibiotics,columns,organisms,syndromes,antibiograms};bind();renderMatrix()});
+function bind(){search.oninput=()=>suggest(search.value);search.onkeydown=e=>{if(e.key==="Enter"){choose(search.value);suggestions.innerHTML=""}};site.onchange=()=>{if(selection?.type==="organism")renderOrganism(selection.item)};$("#clear").onclick=()=>{selection=null;search.value="";home();renderMatrix()}}
+function items(){return [...DB.antibiotics.map(x=>({type:"antibiotic",label:x.name,q:x.name})),...DB.organisms.map(x=>({type:"organism",label:x.name,q:x.name})),...DB.syndromes.map(x=>({type:"syndrome",label:x.name,q:x.id.toUpperCase()}))]}
+function suggest(q){q=q.trim().toLowerCase();if(!q)return suggestions.innerHTML="";let h=items().filter(x=>x.label.toLowerCase().includes(q)||x.q.toLowerCase().includes(q)).slice(0,7);suggestions.innerHTML=h.map(x=>`<button data-q="${esc(x.q)}"><b>${esc(x.label)}</b> <span class="meta">· ${x.type}</span></button>`).join("");suggestions.querySelectorAll("button").forEach(b=>b.onclick=()=>{search.value=b.dataset.q;choose(b.dataset.q);suggestions.innerHTML=""})}
+function choose(q){let x=q.trim().toLowerCase(),a=DB.antibiotics.find(v=>v.id===x||v.name.toLowerCase()===x);if(a){selection={type:"antibiotic",item:a};renderAntibiotic(a);return renderMatrix()}let o=DB.organisms.find(v=>v.name.toLowerCase()===x||v.aliases.includes(x));if(o){selection={type:"organism",item:o};renderOrganism(o);return renderMatrix()}let s=DB.syndromes.find(v=>v.id===x||v.name.toLowerCase()===x||v.aliases.includes(x));if(s){selection={type:"syndrome",item:s};renderSyndrome(s);return renderMatrix()}detail.innerHTML=`<span class="kicker">NO MATCH</span><h2>${esc(q)}</h2><p>Try a drug, organism, CAP, or HAP.</p>`}
+function renderAntibiotic(a){detail.innerHTML=`<span class="kicker">ANTIBIOTIC</span><h2>${esc(a.name)}</h2><div class="meta">${esc(a.class)}</div><p class="mechanism"><b>Mechanism:</b> ${esc(a.mechanism)}</p><div class="uses">${a.uses.map(x=>`<span class="pill">${esc(x)}</span>`).join("")}</div>`}
+function renderOrganism(o){let s=DB.antibiograms[site.value],active=DB.antibiotics.filter(a=>covers(a,o.column));detail.innerHTML=`<div class="bug-layout"><div><span class="kicker">ORGANISM</span><h2>${esc(o.name)}</h2><p>Expected active agents in the current prototype:</p><div class="uses">${active.map(a=>`<span class="pill">${esc(a.name)}</span>`).join("")}</div></div><div class="abxgram"><span class="kicker">LOCAL ANTIBIOGRAM</span><h3>${esc(s.name)}</h3><p class="placeholder">${esc(s.status)}</p><p class="meta">Validated susceptibility percentages will be displayed here next to expected spectrum.</p></div></div>`}
+function renderSyndrome(s){detail.innerHTML=`<span class="kicker">SYNDROME</span><h2>${esc(s.name)}</h2><p>${esc(s.summary)}</p><p class="placeholder">${esc(s.status)}</p>`}
+function home(){detail.innerHTML=`<div><span class="kicker">ABX GUIDE</span><h2>Search a drug, bug, or syndrome</h2><p>Selecting an antibiotic emphasizes its spectrum. Selecting an organism highlights its column and pairs expected activity with the selected site's antibiogram.</p></div>`}
+function covers(a,col){let i=DB.columns.findIndex(c=>c.id===col);return a.segments.some(([s,e])=>{let x=DB.columns.findIndex(c=>c.id===s),y=DB.columns.findIndex(c=>c.id===e);return i>=x&&i<=y})}
+function runs(vals,key){let out=[],start=0;for(let i=1;i<=vals.length;i++){if(i===vals.length||vals[i][key]!==vals[start][key]){out.push({start,end:i-1,label:vals[start][key]});start=i}}return out}
+function renderMatrix(){let m=$("#matrix"),cols=DB.columns,n=cols.length,html=`<div class="matrix"><div class="corner"></div>`;
+let gr=runs(cols,"group");gr.forEach(r=>html+=head(r.label,1,r.start+2,r.end-r.start+1,"group"));
+let sh=runs(cols,"shape");sh.forEach(r=>html+=head(r.label,2,r.start+2,r.end-r.start+1,"shape"));
+cols.forEach((c,i)=>html+=`<div class="head organism ${selection?.type==="organism"&&selection.item.column===c.id?"col-selected":""}" style="grid-row:3;grid-column:${i+2}" data-col="${esc(c.id)}">${esc(c.label)}</div>`);
+DB.antibiotics.forEach((a,ri)=>{let row=ri+4,isDrug=selection?.type==="antibiotic"&&selection.item.id===a.id,dim=selection?.type==="antibiotic"&&!isDrug;html+=`<div class="drug ${isDrug?"selected":""} ${dim?"dim":""}" style="grid-row:${row};grid-column:1" data-drug="${a.id}">${esc(a.name)}</div>`;cols.forEach((c,ci)=>html+=`<div class="cell ${isDrug?"row-selected":""} ${dim?"row-dim":""} ${selection?.type==="organism"&&selection.item.column===c.id?"col-selected":""}" style="grid-row:${row};grid-column:${ci+2}"></div>`);a.segments.forEach(([s,e])=>{let x=cols.findIndex(c=>c.id===s),y=cols.findIndex(c=>c.id===e),span=y-x+1,cls=span===1?"single":"start end";html+=`<div class="bar ${cls} ${isDrug?"emphasis":""} ${selection?.type==="organism"&&!covers(a,selection.item.column)?"dim":""}" style="grid-row:${row};grid-column:${x+2}/span ${span}"></div>`})});html+="</div>";m.innerHTML=html;m.querySelectorAll("[data-drug]").forEach(b=>b.onclick=()=>{let a=DB.antibiotics.find(x=>x.id===b.dataset.drug);search.value=a.name;selection={type:"antibiotic",item:a};renderAntibiotic(a);renderMatrix()});m.querySelectorAll("[data-col]").forEach(b=>b.onclick=()=>{let o=DB.organisms.find(x=>x.column===b.dataset.col);if(o){search.value=o.name;selection={type:"organism",item:o};renderOrganism(o);renderMatrix()}})}
+function head(label,row,col,span,cls){return `<div class="head ${cls}" style="grid-row:${row};grid-column:${col}/span ${span}">${esc(label)}</div>`}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}

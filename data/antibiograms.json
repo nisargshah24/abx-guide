@@ -1,22 +1,30 @@
 {
   "ucsf": {
     "name": "UCSF Parnassus",
-    "status": "Awaiting validated UCSF IDMP import",
-    "values": {}
+    "source": "ucsf_antibiogram",
+    "period": "Current linked reports; landing page updated 3/2026",
+    "values": {},
+    "note": "The current UCSF adult antibiogram is interactive/dynamic on IDMP. This snapshot links the authoritative source rather than inventing values that were not reliably extractable as structured data."
   },
   "zsfg": {
     "name": "ZSFG / SF General",
-    "status": "Awaiting validated UCSF IDMP import",
-    "values": {}
+    "source": "zsfg_antibiogram",
+    "period": "Current IDMP page lists 2022 antibiogram",
+    "values": {},
+    "note": "The public IDMP landing page currently labels the 2022 ZSFG antibiogram as current."
   },
   "sfva": {
     "name": "SF VA",
-    "status": "Awaiting validated SF VA import",
-    "values": {}
+    "source": "sfva_antibiogram",
+    "period": "Jan 1-Dec 31, 2024",
+    "values": {},
+    "note": "IDMP reports percent fully susceptible; urine and non-urine tables are provided via PDF/images."
   },
   "ambulatory": {
     "name": "Ambulatory",
-    "status": "Awaiting validated ambulatory import",
-    "values": {}
+    "source": "ucsf_antibiogram",
+    "period": "Current outpatient reports linked from UCSF susceptibility page",
+    "values": {},
+    "note": "UCSF currently links outpatient S. aureus and urinary E. coli susceptibility reports; other organisms may not have a single ambulatory aggregate."
   }
 }

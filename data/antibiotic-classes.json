@@ -1,0 +1,579 @@
+[
+  {
+    "id": "natural-penicillins",
+    "name": "Natural penicillins",
+    "drugs": [
+      "Penicillin G",
+      "Penicillin V"
+    ],
+    "aliases": [
+      "penicillin",
+      "penicillin g",
+      "penicillin v"
+    ],
+    "mechanism": "Bind PBPs and inhibit bacterial cell-wall synthesis.",
+    "uses": [
+      "Streptococcal infections",
+      "Syphilis"
+    ],
+    "cover": [
+      "mssa",
+      "strep"
+    ],
+    "color": "#4f8cff",
+    "notes": ""
+  },
+  {
+    "id": "antistaph-penicillins",
+    "name": "Anti-staphylococcal penicillins",
+    "drugs": [
+      "Nafcillin",
+      "Oxacillin",
+      "Dicloxacillin"
+    ],
+    "aliases": [
+      "nafcillin",
+      "oxacillin",
+      "dicloxacillin"
+    ],
+    "mechanism": "Penicillinase-stable beta-lactams that bind PBPs and inhibit cell-wall synthesis.",
+    "uses": [
+      "MSSA bacteremia",
+      "MSSA endocarditis",
+      "MSSA SSTI"
+    ],
+    "cover": [
+      "mssa",
+      "strep"
+    ],
+    "color": "#5d9cff",
+    "notes": ""
+  },
+  {
+    "id": "aminopenicillins",
+    "name": "Aminopenicillins",
+    "drugs": [
+      "Ampicillin",
+      "Amoxicillin"
+    ],
+    "aliases": [
+      "ampicillin",
+      "amoxicillin"
+    ],
+    "mechanism": "Beta-lactams that bind PBPs and inhibit cell-wall synthesis.",
+    "uses": [
+      "Enterococcus",
+      "Listeria",
+      "Selected respiratory infections"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "enterococcus",
+      "listeria",
+      "hinfluenzae"
+    ],
+    "color": "#6ba8ff",
+    "notes": ""
+  },
+  {
+    "id": "blbli",
+    "name": "Penicillin + beta-lactamase inhibitors",
+    "drugs": [
+      "Amox/clav",
+      "Amp/sulbactam",
+      "Pip/tazo"
+    ],
+    "aliases": [
+      "augmentin",
+      "amoxicillin clavulanate",
+      "unasyn",
+      "ampicillin sulbactam",
+      "zosyn",
+      "piperacillin tazobactam",
+      "pip tazo"
+    ],
+    "mechanism": "A penicillin inhibits PBPs while the partner inhibitor blocks selected beta-lactamases.",
+    "uses": [
+      "Polymicrobial infection",
+      "Aspiration/intra-abdominal infection",
+      "Broad empiric therapy"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "enterococcus",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "proteus",
+      "pseudomonas",
+      "bfrag",
+      "clostridia"
+    ],
+    "color": "#42c4a3",
+    "notes": "Coverage differs substantially by agent; Pseudomonas activity is from piperacillin/tazobactam."
+  },
+  {
+    "id": "ceph1",
+    "name": "1st generation cephalosporins",
+    "drugs": [
+      "Cefazolin",
+      "Cephalexin",
+      "Cefadroxil"
+    ],
+    "aliases": [
+      "cefazolin",
+      "cephalexin",
+      "keflex",
+      "cefadroxil",
+      "1st gen cephalosporin"
+    ],
+    "mechanism": "Bind PBPs and inhibit cell-wall synthesis, with strong MSSA/streptococcal activity.",
+    "uses": [
+      "MSSA",
+      "Cellulitis",
+      "Surgical prophylaxis"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "ecoli",
+      "klebsiella",
+      "proteus"
+    ],
+    "color": "#ff9d4d",
+    "notes": ""
+  },
+  {
+    "id": "ceph2",
+    "name": "2nd generation cephalosporins",
+    "drugs": [
+      "Cefuroxime",
+      "Cefoxitin",
+      "Cefotetan"
+    ],
+    "aliases": [
+      "cefuroxime",
+      "cefoxitin",
+      "cefotetan",
+      "2nd gen cephalosporin"
+    ],
+    "mechanism": "Bind PBPs and inhibit cell-wall synthesis; cephamycins add anaerobic activity.",
+    "uses": [
+      "Selected respiratory infections",
+      "Selected intra-abdominal/surgical uses"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "proteus",
+      "bfrag"
+    ],
+    "color": "#ffad57",
+    "notes": "Coverage differs by agent."
+  },
+  {
+    "id": "ceph3",
+    "name": "3rd generation cephalosporins",
+    "drugs": [
+      "Ceftriaxone",
+      "Cefotaxime",
+      "Ceftazidime"
+    ],
+    "aliases": [
+      "ceftriaxone",
+      "rocephin",
+      "cefotaxime",
+      "ceftazidime",
+      "3rd gen cephalosporin"
+    ],
+    "mechanism": "Bind PBPs and inhibit cell-wall synthesis; third-generation agents emphasize gram-negative activity.",
+    "uses": [
+      "CAP",
+      "Meningitis",
+      "Serious gram-negative infections"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "neisseria",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "proteus",
+      "pseudomonas"
+    ],
+    "color": "#f3dc4f",
+    "notes": "Pseudomonas coverage is agent-specific (ceftazidime)."
+  },
+  {
+    "id": "ceph4",
+    "name": "4th generation cephalosporins",
+    "drugs": [
+      "Cefepime"
+    ],
+    "aliases": [
+      "cefepime",
+      "4th gen cephalosporin"
+    ],
+    "mechanism": "Binds PBPs and inhibits cell-wall synthesis, with broad gram-negative activity including Pseudomonas.",
+    "uses": [
+      "HAP/VAP",
+      "Febrile neutropenia",
+      "Severe gram-negative infections"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "enterobacter",
+      "citrobacter",
+      "serratia",
+      "proteus",
+      "pseudomonas"
+    ],
+    "color": "#9edb55",
+    "notes": ""
+  },
+  {
+    "id": "carbapenems",
+    "name": "Carbapenems",
+    "drugs": [
+      "Meropenem",
+      "Imipenem",
+      "Ertapenem"
+    ],
+    "aliases": [
+      "meropenem",
+      "imipenem",
+      "ertapenem",
+      "carbapenem"
+    ],
+    "mechanism": "Broad beta-lactams that bind PBPs and resist many beta-lactamases.",
+    "uses": [
+      "ESBL infections",
+      "Severe resistant gram-negative infections",
+      "Polymicrobial infections"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "enterococcus",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "enterobacter",
+      "citrobacter",
+      "serratia",
+      "proteus",
+      "pseudomonas",
+      "bfrag",
+      "clostridia"
+    ],
+    "color": "#55df87",
+    "notes": "Ertapenem lacks Pseudomonas and Enterococcus activity."
+  },
+  {
+    "id": "monobactam",
+    "name": "Monobactam",
+    "drugs": [
+      "Aztreonam"
+    ],
+    "aliases": [
+      "aztreonam"
+    ],
+    "mechanism": "Binds PBP3 and inhibits cell-wall synthesis in aerobic gram-negative bacteria.",
+    "uses": [
+      "Selected gram-negative infections in severe beta-lactam allergy"
+    ],
+    "cover": [
+      "neisseria",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "enterobacter",
+      "citrobacter",
+      "serratia",
+      "proteus",
+      "pseudomonas"
+    ],
+    "color": "#45c8c8",
+    "notes": ""
+  },
+  {
+    "id": "glycopeptides",
+    "name": "Glycopeptides",
+    "drugs": [
+      "Vancomycin"
+    ],
+    "aliases": [
+      "vancomycin",
+      "vanc"
+    ],
+    "mechanism": "Binds D-Ala-D-Ala termini of peptidoglycan precursors, blocking cell-wall synthesis.",
+    "uses": [
+      "MRSA",
+      "Serious resistant gram-positive infections"
+    ],
+    "cover": [
+      "mrsa",
+      "mssa",
+      "strep",
+      "enterococcus"
+    ],
+    "color": "#4f9cff",
+    "notes": ""
+  },
+  {
+    "id": "lipopeptide",
+    "name": "Lipopeptide",
+    "drugs": [
+      "Daptomycin"
+    ],
+    "aliases": [
+      "daptomycin"
+    ],
+    "mechanism": "Causes rapid depolarization of susceptible gram-positive bacterial membranes.",
+    "uses": [
+      "MRSA bacteremia",
+      "VRE/Enterococcus",
+      "Serious gram-positive infections outside lung"
+    ],
+    "cover": [
+      "mrsa",
+      "mssa",
+      "strep",
+      "enterococcus"
+    ],
+    "color": "#5d83ff",
+    "notes": ""
+  },
+  {
+    "id": "oxazolidinones",
+    "name": "Oxazolidinones",
+    "drugs": [
+      "Linezolid",
+      "Tedizolid"
+    ],
+    "aliases": [
+      "linezolid",
+      "tedizolid"
+    ],
+    "mechanism": "Bind the 50S ribosomal subunit and inhibit translation initiation.",
+    "uses": [
+      "MRSA pneumonia",
+      "VRE",
+      "Resistant gram-positive infections"
+    ],
+    "cover": [
+      "mrsa",
+      "mssa",
+      "strep",
+      "enterococcus"
+    ],
+    "color": "#806cff",
+    "notes": ""
+  },
+  {
+    "id": "tetracyclines",
+    "name": "Tetracyclines",
+    "drugs": [
+      "Doxycycline",
+      "Minocycline",
+      "Tigecycline"
+    ],
+    "aliases": [
+      "doxycycline",
+      "minocycline",
+      "tigecycline"
+    ],
+    "mechanism": "Bind the 30S ribosomal subunit and inhibit protein synthesis.",
+    "uses": [
+      "Atypical respiratory pathogens",
+      "Selected MRSA SSTI",
+      "Tick-borne infections"
+    ],
+    "cover": [
+      "mrsa",
+      "mssa",
+      "hinfluenzae",
+      "stenotrophomonas",
+      "atypicals"
+    ],
+    "color": "#9a52ff",
+    "notes": ""
+  },
+  {
+    "id": "fluoroquinolones",
+    "name": "Fluoroquinolones",
+    "drugs": [
+      "Ciprofloxacin",
+      "Levofloxacin",
+      "Moxifloxacin"
+    ],
+    "aliases": [
+      "ciprofloxacin",
+      "cipro",
+      "levofloxacin",
+      "levaquin",
+      "moxifloxacin"
+    ],
+    "mechanism": "Inhibit DNA gyrase and topoisomerase IV.",
+    "uses": [
+      "Selected urinary/GNR infections",
+      "Respiratory infections",
+      "Pseudomonas (agent-dependent)"
+    ],
+    "cover": [
+      "strep",
+      "hinfluenzae",
+      "ecoli",
+      "klebsiella",
+      "enterobacter",
+      "citrobacter",
+      "serratia",
+      "proteus",
+      "pseudomonas",
+      "atypicals"
+    ],
+    "color": "#d64be8",
+    "notes": "Coverage differs substantially by agent."
+  },
+  {
+    "id": "aminoglycosides",
+    "name": "Aminoglycosides",
+    "drugs": [
+      "Gentamicin",
+      "Tobramycin",
+      "Amikacin"
+    ],
+    "aliases": [
+      "gentamicin",
+      "tobramycin",
+      "amikacin"
+    ],
+    "mechanism": "Irreversibly bind the 30S ribosomal subunit and cause mistranslation.",
+    "uses": [
+      "Severe aerobic gram-negative infections",
+      "Selected synergy"
+    ],
+    "cover": [
+      "ecoli",
+      "klebsiella",
+      "enterobacter",
+      "citrobacter",
+      "serratia",
+      "proteus",
+      "pseudomonas"
+    ],
+    "color": "#e24ac6",
+    "notes": ""
+  },
+  {
+    "id": "macrolides",
+    "name": "Macrolides",
+    "drugs": [
+      "Azithromycin",
+      "Clarithromycin",
+      "Erythromycin"
+    ],
+    "aliases": [
+      "azithromycin",
+      "zithromax",
+      "clarithromycin",
+      "erythromycin"
+    ],
+    "mechanism": "Bind the 50S ribosomal subunit and inhibit protein synthesis.",
+    "uses": [
+      "Atypical respiratory pathogens",
+      "Selected respiratory infections"
+    ],
+    "cover": [
+      "strep",
+      "hinfluenzae",
+      "atypicals"
+    ],
+    "color": "#e950a7",
+    "notes": ""
+  },
+  {
+    "id": "lincosamide",
+    "name": "Lincosamide",
+    "drugs": [
+      "Clindamycin"
+    ],
+    "aliases": [
+      "clindamycin"
+    ],
+    "mechanism": "Binds the 50S ribosomal subunit and inhibits protein synthesis.",
+    "uses": [
+      "Selected SSTI",
+      "Selected anaerobic infections",
+      "Toxin suppression"
+    ],
+    "cover": [
+      "mssa",
+      "strep",
+      "bfrag",
+      "clostridia"
+    ],
+    "color": "#ef5c98",
+    "notes": ""
+  },
+  {
+    "id": "sulfonamide",
+    "name": "Antimetabolite",
+    "drugs": [
+      "TMP/SMX"
+    ],
+    "aliases": [
+      "tmp smx",
+      "trimethoprim sulfamethoxazole",
+      "bactrim",
+      "septra"
+    ],
+    "mechanism": "Sequentially blocks bacterial folate synthesis.",
+    "uses": [
+      "Selected MRSA SSTI",
+      "UTI",
+      "Stenotrophomonas"
+    ],
+    "cover": [
+      "mrsa",
+      "mssa",
+      "ecoli",
+      "klebsiella",
+      "stenotrophomonas"
+    ],
+    "color": "#ee4c87",
+    "notes": ""
+  },
+  {
+    "id": "nitroimidazole",
+    "name": "Nitroimidazole",
+    "drugs": [
+      "Metronidazole"
+    ],
+    "aliases": [
+      "metronidazole",
+      "flagyl"
+    ],
+    "mechanism": "Reduced metabolites disrupt DNA in susceptible anaerobic organisms.",
+    "uses": [
+      "Anaerobic infections",
+      "Intra-abdominal infections in combination"
+    ],
+    "cover": [
+      "bfrag",
+      "clostridia"
+    ],
+    "color": "#e0a33e",
+    "notes": ""
+  }
+]

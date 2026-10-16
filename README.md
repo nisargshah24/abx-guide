@@ -1,17 +1,11 @@
-# ABX Guide — Static v2
+# ABX Guide v3 — static snapshot
 
-Dark-mode GitHub Pages prototype.
+Static GitHub Pages build; no backend, npm, scraper, or scheduled monthly checks.
 
-## What's new
-- Dark UI
-- Spectrum grouped by Gram stain and bacterial shape
-- Continuous spectrum bars rather than dot cells
-- Selecting an antibiotic highlights its row/spectrum and shows class, common uses, and a one-line mechanism
-- Selecting an organism highlights its column and shows expected active agents plus a placeholder for the selected site's local antibiogram
-- Site selector: UCSF Parnassus, ZSFG / SF General, SF VA, Ambulatory
+Includes class-based continuous spectrum bars, drug-to-class search, dynamic insertion of rarer organisms, organism highlighting, site-specific antibiogram source panels, and initial adult syndrome guidance (CAP, HAP/VAP, UTI, SSTI, intra-abdominal infection, meningitis, sepsis).
 
-## Deploy
-Upload all files/folders in this package to the root of the existing `abx-guide` repository and commit. GitHub Pages will automatically redeploy from `main`.
+Important: this build deliberately does not invent susceptibility percentages that were not reliably extractable as structured data from current public IDMP pages. It links the authoritative local antibiogram for UCSF, ZSFG, SFVA, and ambulatory data. A future data-validation pass can populate exact percentages.
 
-## Clinical safety
-This remains an interface prototype. Spectrum data are simplified and site-specific susceptibility/recommendation values are intentionally not populated until validated against current institutional sources.
+Deploy by uploading all files/folders to the root of `abx-guide` and committing to `main`.
+
+Snapshot: 2026-10-16.

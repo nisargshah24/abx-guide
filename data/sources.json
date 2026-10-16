@@ -1,0 +1,42 @@
+{
+  "snapshot": "2026-10-16",
+  "ucsf_antibiogram": {
+    "label": "UCSF Adult Susceptibility",
+    "url": "https://idmp.ucsf.edu/content/antimicrobial-susceptibility-at-ucsf-adult-hospitals",
+    "note": "Landing page last updated 3/2026; current inpatient and outpatient reports are linked there."
+  },
+  "zsfg_antibiogram": {
+    "label": "ZSFG/LHH Antibiograms",
+    "url": "https://idmp.ucsf.edu/content/antimicrobial-susceptibility-at-zuckerberg-san-francisco-general-laguna-honda-hospital",
+    "note": "IDMP currently labels the 2022 ZSFG antibiogram as current."
+  },
+  "sfva_antibiogram": {
+    "label": "SFVA Antibiograms",
+    "url": "https://idmp.ucsf.edu/content/antimicrobial-susceptibility-at-san-francisco-veterans-affairs-va-medical-center",
+    "note": "Current page reports Jan-Dec 2024 susceptibility data."
+  },
+  "pneumonia": {
+    "label": "UCSF IDMP Pneumonia",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/pneumonia"
+  },
+  "uti": {
+    "label": "UCSF IDMP UTI",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/urinary-tract-infections"
+  },
+  "ssti": {
+    "label": "UCSF IDMP SSTI",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/skin-and-soft-tissue-infections"
+  },
+  "abdominal": {
+    "label": "UCSF IDMP Abdominopelvic Infections",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/abdominopelvic-infections"
+  },
+  "cns": {
+    "label": "UCSF IDMP CNS Infections",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/central-nervous-system-infections"
+  },
+  "sepsis": {
+    "label": "UCSF IDMP Sepsis / Nonfocal",
+    "url": "https://idmp.ucsf.edu/guidelines-empiric-therapy-categories/sepsis-source-unknown-and-other-nonfocal-infections"
+  }
+}

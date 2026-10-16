@@ -2,82 +2,209 @@
   {
     "id": "mrsa",
     "name": "MRSA",
-    "column": "MRSA",
     "aliases": [
-      "mrsa"
-    ]
+      "methicillin resistant staphylococcus aureus"
+    ],
+    "gram": "Gram positive",
+    "shape": "Cocci",
+    "common": 1,
+    "order": 10
   },
   {
     "id": "mssa",
     "name": "MSSA",
-    "column": "MSSA",
     "aliases": [
-      "mssa"
-    ]
+      "methicillin susceptible staphylococcus aureus"
+    ],
+    "gram": "Gram positive",
+    "shape": "Cocci",
+    "common": 1,
+    "order": 20
   },
   {
     "id": "strep",
     "name": "Streptococci",
-    "column": "Strep",
     "aliases": [
       "strep",
-      "streptococcus",
-      "streptococci"
-    ]
+      "streptococcus"
+    ],
+    "gram": "Gram positive",
+    "shape": "Cocci",
+    "common": 1,
+    "order": 30
   },
   {
     "id": "enterococcus",
     "name": "Enterococcus",
-    "column": "Enterococcus",
     "aliases": [
-      "enterococcus",
       "enterococci"
-    ]
+    ],
+    "gram": "Gram positive",
+    "shape": "Cocci",
+    "common": 1,
+    "order": 40
+  },
+  {
+    "id": "listeria",
+    "name": "Listeria",
+    "aliases": [
+      "listeria monocytogenes"
+    ],
+    "gram": "Gram positive",
+    "shape": "Rods",
+    "common": 0,
+    "order": 50
   },
   {
     "id": "neisseria",
     "name": "Neisseria",
-    "column": "Neisseria",
     "aliases": [
-      "neisseria"
-    ]
+      "n meningitidis",
+      "n gonorrhoeae"
+    ],
+    "gram": "Gram negative",
+    "shape": "Cocci",
+    "common": 1,
+    "order": 60
   },
   {
     "id": "hinfluenzae",
-    "name": "Haemophilus influenzae",
-    "column": "H influenzae",
+    "name": "H. influenzae",
     "aliases": [
-      "h influenzae",
-      "h. influenzae",
-      "haemophilus"
-    ]
+      "haemophilus influenzae",
+      "h influenzae"
+    ],
+    "gram": "Gram negative",
+    "shape": "Coccobacilli",
+    "common": 1,
+    "order": 70
   },
   {
     "id": "ecoli",
-    "name": "Escherichia coli",
-    "column": "E coli",
+    "name": "E. coli",
     "aliases": [
-      "e coli",
-      "e. coli",
-      "ecoli"
-    ]
+      "escherichia coli",
+      "e coli"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 1,
+    "order": 80
   },
   {
     "id": "klebsiella",
     "name": "Klebsiella",
-    "column": "Klebsiella",
     "aliases": [
-      "klebsiella"
-    ]
+      "klebsiella pneumoniae"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 1,
+    "order": 90
+  },
+  {
+    "id": "enterobacter",
+    "name": "Enterobacter",
+    "aliases": [
+      "enterobacter cloacae"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 0,
+    "order": 100
+  },
+  {
+    "id": "citrobacter",
+    "name": "Citrobacter",
+    "aliases": [
+      "citrobacter freundii"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 0,
+    "order": 110
+  },
+  {
+    "id": "serratia",
+    "name": "Serratia",
+    "aliases": [
+      "serratia marcescens"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 0,
+    "order": 120
+  },
+  {
+    "id": "proteus",
+    "name": "Proteus",
+    "aliases": [
+      "proteus mirabilis",
+      "proteus spp"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 0,
+    "order": 130
   },
   {
     "id": "pseudomonas",
-    "name": "Pseudomonas aeruginosa",
-    "column": "Pseudomonas",
+    "name": "Pseudomonas",
     "aliases": [
-      "pseudomonas",
       "pseudomonas aeruginosa",
       "psa"
-    ]
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 1,
+    "order": 140
+  },
+  {
+    "id": "stenotrophomonas",
+    "name": "Stenotrophomonas",
+    "aliases": [
+      "stenotrophomonas maltophilia"
+    ],
+    "gram": "Gram negative",
+    "shape": "Rods",
+    "common": 0,
+    "order": 150
+  },
+  {
+    "id": "bfrag",
+    "name": "B. fragilis",
+    "aliases": [
+      "bacteroides fragilis",
+      "bacteroides"
+    ],
+    "gram": "Anaerobes",
+    "shape": "Anaerobes",
+    "common": 1,
+    "order": 160
+  },
+  {
+    "id": "clostridia",
+    "name": "Clostridia",
+    "aliases": [
+      "clostridium",
+      "clostridioides"
+    ],
+    "gram": "Anaerobes",
+    "shape": "Anaerobes",
+    "common": 0,
+    "order": 170
+  },
+  {
+    "id": "atypicals",
+    "name": "Atypicals",
+    "aliases": [
+      "mycoplasma",
+      "chlamydia pneumoniae",
+      "legionella"
+    ],
+    "gram": "Atypicals",
+    "shape": "Atypicals",
+    "common": 1,
+    "order": 180
   }
 ]

@@ -96,38 +96,98 @@ function drugDetail(d){return `<span class="eyebrow">ANTIBIOTIC</span><h2>${esc(
 function bugDetail(b){let blocks=localDatasetsForBug();let html=`<span class="eyebrow">ORGANISM</span><h2>${esc(b.name)}</h2><p class="muted">${esc(b.gram)} · ${esc(b.shape)}</p>`;if(b.id==='enterococcus')html+=`<div class="note">Expected spectrum is shown for Enterococcus generally. For species-specific local susceptibility, search E. faecalis or E. faecium.</div>`;html+=`<h3>Local Susceptibility</h3>`;if(!blocks.length){html+=`<div class="note">No applicable reported local susceptibility table is available for this organism and selected context.</div>`}else{for(const d of blocks){html+=`<div class="abx-section"><div class="abx-section-title"><span>${esc(d.label)}</span><small>only reported agents shown</small></div>${Object.entries(d.values).sort((a,b)=>(b[1].p??-1)-(a[1].p??-1)).map(([name,x])=>`<div class="abxrow"><span>${esc(name)}</span><span class="smalln">${x.n&&x.n<30?`n=${x.n} · small N`:x.n?`n=${x.n}`:''}</span><span class="badge ${pctClass(x)}">${pctText(x)}</span></div>`).join('')}<a class="source" target="_blank" href="${d.src}">Antibiogram source ↗</a></div>`}}return html}
 function selectedModifierOptions(s){let out=[];for(const m of s.mods||[]){let v=modState[m.id];let ids=m.multi?(Array.isArray(v)?v:[]):(v?[v]:[]);for(const id of ids){let o=m.options.find(x=>x.id===id);if(o)out.push({modifier:m,option:o})}}return out}
 function computeRecommendation(s){
-let preferred=s.base.preferred,alternative=s.base.alternative,consult=s.consult||null,directed=false;
+let preferred=s.base.preferred,
+    alternative=s.base.alternative,
+    consult=s.consult||null,
+    directed=false;
+
+// Explicit organism-specific directed therapy for this syndrome
 if(state.bug&&s.directed?.[state.bug.id]){
   let d=s.directed[state.bug.id];
+
   if(d.preferred)preferred=d.preferred;
   if(d.alternative!==undefined)alternative=d.alternative;
   if(d.consult)consult=d.consult;
+
   directed=true;
 }
+
+// Generic bacteremia should inherit organism-specific
+// gram-negative BSI rules when available.
+if(
+  s.id==='bacteremia' &&
+  state.bug &&
+  !directed
+){
+  let gnBsi=syndromes.find(x=>x.id==='gnbsi');
+  let d=gnBsi?.directed?.[state.bug.id];
+
+  if(d){
+    if(d.preferred)preferred=d.preferred;
+    if(d.alternative!==undefined)alternative=d.alternative;
+    if(d.consult)consult=d.consult;
+
+    directed=true;
+  }
+}
+
+// Existing clinical modifiers
 for(const {option:o} of selectedModifierOptions(s)){
   if(o.preferred)preferred=o.preferred;
   if(o.alternative)alternative=o.alternative;
   if(o.appendPreferred)preferred+=o.appendPreferred;
   if(o.appendAlternative)alternative+=o.appendAlternative;
 }
-// Hospital-specific HAP branches.
+
+// Hospital-specific HAP branches
 if(s.id==='hap'){
-  let site=$('#site').value,setting=modState.setting||'floor',risk=Array.isArray(modState.risk)?modState.risk:[];
+  let site=$('#site').value,
+      setting=modState.setting||'floor',
+      risk=Array.isArray(modState.risk)?modState.risk:[];
+
   if(site==='zsfg'){
-    if(setting==='floor'){preferred=risk.includes('gnr')?'Cefepime':'Ceftriaxone';alternative='Levofloxacin for severe beta-lactam allergy';}
-    else{preferred='Cefepime';alternative='Aztreonam + vancomycin OR levofloxacin ± vancomycin for severe beta-lactam allergy';}
+    if(setting==='floor'){
+      preferred=risk.includes('gnr')?'Cefepime':'Ceftriaxone';
+      alternative='Levofloxacin for severe beta-lactam allergy';
+    }else{
+      preferred='Cefepime';
+      alternative='Aztreonam + vancomycin OR levofloxacin ± vancomycin for severe beta-lactam allergy';
+    }
+
     if(risk.includes('mrsa'))preferred+=' + vancomycin';
+
   }else if(site==='ucsf'){
-    preferred='Use the UCSF Medical Center HAP/VAP algorithm';alternative='Use the UCSF beta-lactam allergy pathway';
-    if(risk.includes('mrsa'))preferred+=' + empiric anti-MRSA coverage per UCSF algorithm';
-    if(risk.includes('gnr'))preferred+='; broaden for resistant GNR risk per UCSF algorithm';
+    preferred='Use the UCSF Medical Center HAP/VAP algorithm';
+    alternative='Use the UCSF beta-lactam allergy pathway';
+
+    if(risk.includes('mrsa'))
+      preferred+=' + empiric anti-MRSA coverage per UCSF algorithm';
+
+    if(risk.includes('gnr'))
+      preferred+='; broaden for resistant GNR risk per UCSF algorithm';
+
   }else if(site==='sfva'){
-    preferred='Use the VASF stepwise HAP/VAP treatment algorithm';alternative='Use the VASF allergy/stepwise alternative pathway';
-    if(risk.includes('mrsa'))preferred+=' + MRSA coverage when VASF risk criteria are met';
-    if(risk.includes('gnr'))preferred+=' + antipseudomonal coverage when VASF risk criteria are met';
-  }else{preferred='HAP/VAP recommendations are inpatient-site specific';alternative='Select an inpatient hospital site'}
+    preferred='Use the VASF stepwise HAP/VAP treatment algorithm';
+    alternative='Use the VASF allergy/stepwise alternative pathway';
+
+    if(risk.includes('mrsa'))
+      preferred+=' + MRSA coverage when VASF risk criteria are met';
+
+    if(risk.includes('gnr'))
+      preferred+=' + antipseudomonal coverage when VASF risk criteria are met';
+
+  }else{
+    preferred='HAP/VAP recommendations are inpatient-site specific';
+    alternative='Select an inpatient hospital site';
+  }
 }
-return{preferred,alternative,consult,directed}
+
+return{
+  preferred,
+  alternative,
+  consult,
+  directed
+};
 }
 function modifierUI(s){if(!s.mods?.length)return'';return `<div class="modifier-box">${s.mods.map(m=>`<div class="modifier"><label>${esc(m.label)}</label><div class="options">${m.options.map(o=>`<button class="opt ${isModifierActive(m,o.id)?'active':''}" data-mod="${m.id}" data-opt="${o.id}" data-multi="${m.multi?1:0}">${esc(o.label)}</button>`).join('')}</div></div>`).join('')}</div>`}
 function isModifierActive(m,id){let v=modState[m.id];return m.multi?Array.isArray(v)&&v.includes(id):v===id}
@@ -135,7 +195,29 @@ function bindModifierButtons(){document.querySelectorAll('[data-mod]').forEach(b
 function syndromeDetail(s){let r=computeRecommendation(s),heading=r.directed?'Directed Treatment':'Empiric Treatment',src=sources[s.source]||sources.adult;return `<span class="eyebrow">INFECTION</span><h2>${esc(s.name)}</h2>${modifierUI(s)}<h3>${heading}</h3><div class="tier preferred"><div class="tag">Preferred</div><div class="regimen">${esc(r.preferred)}</div></div><div class="tier alternative"><div class="tag">Alternative</div><div class="regimen">${esc(r.alternative||'—')}</div></div>${r.consult?`<div class="note">${esc(r.consult)}</div>`:''}<h3>Expected Duration</h3><p>${esc(s.duration)}</p><div class="note">${esc(s.note)}</div><a class="source" href="${src}" target="_blank">Guidance source ↗</a>`}
 function findLocalValue(values,agent){let aliases={'Piperacillin/tazobactam':'Pip/tazo','Pip/tazo':'Pip/tazo','Trimethoprim/Sulfamethoxazole':'TMP/SMX'};let q=(aliases[agent]||agent).toLowerCase();let key=Object.keys(values).find(k=>k.toLowerCase()===q||k.toLowerCase().includes(q)||q.includes(k.toLowerCase()));return key?values[key]:null}
 function regimenAgents(text){let hits=[];for(const d of drugRows){for(const agent of d.drugs){if(text.toLowerCase().includes(agent.toLowerCase()))hits.push({agent,row:d})}}return hits}
-function combinedContext(){let s=state.syn,r=computeRecommendation(s);if(r.directed)return'';let datasets=availableDatasets(),d=datasets[0],values=d?.data[state.bug.id]||{};return `<h3>${esc(state.bug.name)} + ${esc(s.name)}</h3>${comboTier('Preferred',r.preferred,values,'preferred')}${comboTier('Alternative',r.alternative,values,'alternative')}`}
+function combinedContext(){
+  if(!state.bug || !state.syn) return '';
+
+  let s=state.syn;
+  let r=computeRecommendation(s);
+
+  // We already displayed the organism-specific directed regimen
+  // in the main treatment card, so don't duplicate it.
+  if(r.directed) return '';
+
+  return `
+    <h3>${esc(state.bug.name)} + ${esc(s.name)}</h3>
+
+    <div class="note">
+      No specific organism–syndrome treatment pathway is represented
+      for this combination in this guide. The empiric treatment shown
+      above applies to the syndrome generally, but this organism-specific
+      presentation may be uncommon or case-specific. Use organism
+      identification, susceptibility results, and clinical context
+      rather than the routine empiric pathway alone.
+    </div>
+  `;
+}
 function comboTier(label,text,values,cl){let agents=regimenAgents(text||''),active=agents.filter(x=>x.row.cover.includes(state.bug.id)||x.row.variable.includes(state.bug.id)),locals=active.map(x=>{let v=findLocalValue(values,x.agent);return v&&v.p!=null?`${x.agent} ${v.p}%`:null}).filter(Boolean);let context=active.length?`Expected activity represented for: ${active.map(x=>x.agent).join(', ')}.`:`No direct active-agent intersection was parsed from this regimen.`;if(locals.length)context+=` Local susceptibility: ${locals.join(' · ')}.`;return `<div class="tier ${cl}"><div class="tag">${label}</div><div class="regimen">${esc(text||'—')}</div><div class="context">${esc(context)}</div></div>`}
 function drugFit(){let d=state.drug,bugOk=!state.bug||d.cover.includes(state.bug.id)||d.variable.includes(state.bug.id);let syndromeOk=true;if(state.syn){let r=computeRecommendation(state.syn),all=(r.preferred+' '+r.alternative).toLowerCase();syndromeOk=[d.label,...d.drugs,...d.aliases].some(x=>all.includes(x.toLowerCase()))}let cls=bugOk&&syndromeOk?'good':!bugOk?'bad':'warn';let text=bugOk&&syndromeOk?'The selected antibiotic fits the selected spectrum/context in this simplified guide.':!bugOk?`${d.label} does not have expected activity against ${state.bug.name} in the spectrum model.`:`Expected spectrum fits${state.bug?` ${state.bug.name}`:''}, but the selected infection pathway does not list this drug/class as Preferred or Alternative.`;return `<div class="fit ${cls}">${esc(text)}</div>`}
 function renderSources(){$('#sourcecards').innerHTML=`<div class="sourcecard"><b>UCSF Parnassus + ambulatory</b>2025 susceptibility tables and current IDMP guidance<br><a target="_blank" href="${sources.ucsf}">Source ↗</a></div><div class="sourcecard"><b>ZSFG / SF General</b>2022 urine + non-urine antibiogram supplied for this snapshot<br><a target="_blank" href="${sources.zsfg}">Source ↗</a></div><div class="sourcecard"><b>SF VA</b>2024 urine + non-urine antibiogram supplied for this snapshot<br><a target="_blank" href="${sources.sfva}">Source ↗</a></div>`}
